@@ -623,3 +623,5 @@ curl http://localhost:8082/v1/models
 
 *Dernière mise à jour : Mai 2026*
 *Guide créé par valorisa après session d'installation complète sur macOS Sequoia*
+
+
