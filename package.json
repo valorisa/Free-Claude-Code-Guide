@@ -1,0 +1,9 @@
+{
+  "name": "free-claude-code-guide",
+  "version": "1.0.0",
+  "description": "Guide complet d'installation et d'utilisation de Free Claude Code",
+  "main": "README.md",
+  "dependencies": {},
+  "devDependencies": {}
+}
+
