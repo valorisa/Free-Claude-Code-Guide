@@ -10,6 +10,7 @@
 > **IMPORTANT** : Ce guide est un "pense-bête" exhaustif créé après une session d'installation complète sur macOS Sequoia avec VSCode.
 > Il contient toutes les subtilités, nuances et décisions techniques prises lors de l'installation.
 > Il sert de référence complète pour l'utilisation de Free Claude Code.
+> C'est un guide de référence technique. Il est très détaillé.
 
 ---
 
@@ -180,6 +181,8 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ## 🤖 Qu'est-ce que Free Claude Code ?
 
 **Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy**. Il redirige les appels API d'Anthropic vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
+C'est un projet open-source.
+C'est un projet open-source.
 
 ### Ce que ça fait :
 
@@ -257,7 +260,8 @@ Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilib
 
 ### Étape 1 : Installer uv (gestionnaire de paquets Python moderne)
 
-`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet. C'est un outil moderne.
+`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet. C'est un outil moderne. Il est performant.
+Il est très performant.
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -342,8 +346,8 @@ MODEL="nvidia_nim/z-ai/glm4.7"                  # Fallback si les autres sont vi
 ANTHROPIC_AUTH_TOKEN="freecc"
 ```
 
-Ce token est **local** et **fictif**. Claude Code l'envoie au proxy, et le proxy le renvoie tel quel. Vous pouvez mettre n'importe quelle valeur (ex: "toto", "1234"). "freecc" est la convention du projet.
-C'est un token de test.
+Ce token est **local** et **fictif**. Claude Code l'envoie au proxy, et le proxy le renvoie tel quel. Vous pouvez mettre n'importe quelle valeur (ex: "toto", "1234"). "freecc" est la convention du projet. C'est un token de test.
+C'est un token de test. Il n'est pas sensible.
 
 #### 4. Options de "Thinking" (Raisonnement)
 

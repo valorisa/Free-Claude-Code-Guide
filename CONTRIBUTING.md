@@ -34,9 +34,9 @@ When creating a bug report, include as many details as possible :
 Enhancement suggestions are tracked as GitHub issues:
 
 - **Use a clear and descriptive title**
-- **Provide a step-by-step description of the suggested enhancement**
+- **Provide a step-by-step description**
 - **Explain why this enhancement would be useful**
-- **List some other guides or projects where this enhancement exists**
+- **List some other guides where this exists**
 
 ### Pull Request Process
 
@@ -65,9 +65,9 @@ Enhancement suggestions are tracked as GitHub issues:
 
 ### Documentation
 
-- Write in French (primary language)
-- Be explicit and verbose for technical concepts
-- Include examples for every option
+- Write in French (primary language of this guide)
+- Be explicit and verbose when explaining technical concepts
+- Include examples for every configuration option
 - Explain "why" not just "how"
 
 ## Review Process
