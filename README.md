@@ -104,7 +104,7 @@ uv python install 3.14
 **Cloner le dépôt** :
 
 ```bash
-cd /Users/valorisa/Projets
+cd /Users/$logname/Projets
 git clone https://github.com/Alishahryar1/free-claude-code.git
 cd free-claude-code
 cp .env.example .env
@@ -114,7 +114,7 @@ cp .env.example .env
 
 ```bash
 # Terminal1
-cd /Users/valorisa/Projets/free-claude-code
+cd /Users/$logname/Projets/free-claude-code
 uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
 # Terminal2
@@ -188,7 +188,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 
 - L'intégration VSCode fonctionne de la même manière que sur macOS
 
-> **💡 Note importante pour le test** : Vous n'avez **pas besoin** d'être dans un dossier spécifique comme `/Users/valorisa/Projets/free-claude-code-guide` ou `/Users/valorisa/Projets/free-claude-code`. Vous pouvez lancer Claude Code depuis **n'importe quel dossier**.
+> **💡 Note importante pour le test** : Vous n'avez **pas besoin** d'être dans un dossier spécifique comme `/Users/$logname/Projets/free-claude-code-guide` ou `/Users/$logname/Projets/free-claude-code`. Vous pouvez lancer Claude Code depuis **n'importe quel dossier**.
 > 
 > **Ce qu'il faut vérifier** :
 > 1. **Vérifier que le proxy tourne** (port 8082) :
@@ -281,13 +281,13 @@ C'est une particularité du projet. C'est unique.
 **Dossier du projet Free Claude Code** :
 
 ```text
-/Users/valorisa/Projets/free-claude-code
+/Users/$logname/Projets/free-claude-code
 ```
 
 **Dossier de ce guide** :
 
 ```text
-/Users/valorisa/Projets/free-claude-code-guide
+/Users/$logname/Projets/free-claude-code-guide
 ```
 
 ---
@@ -308,7 +308,7 @@ Vérifier l'installation :
 
 ```bash
 which uv
-# Devrait afficher : /Users/valorisa/.local/bin/uv
+# Devrait afficher : /Users/$logname/.local/bin/uv
 ```
 
 ### Étape 2 : Installer Python 3.14
@@ -322,14 +322,14 @@ uv python install 3.14
 ### Étape 3 : Cloner le dépôt
 
 ```bash
-cd /Users/valorisa/Projets
+cd /Users/$logname/Projets
 git clone https://github.com/Alishahryar1/free-claude-code.git
 ```
 
 ### Étape 4 : Installer les dépendances
 
 ```bash
-cd /Users/valorisa/Projets/free-claude-code
+cd /Users/$logname/Projets/free-claude-code
 uv sync
 ```
 
@@ -348,7 +348,7 @@ uv sync
 Le fichier `.env` contient toute la configuration. Il est situé à :
 
 ```text
-/Users/valorisa/Projets/free-claude-code/.env
+/Users/$logname/Projets/free-claude-code/.env
 ```
 
 #### 1. Choix du Provider (OBLIGATOIRE)
@@ -465,7 +465,7 @@ Dans Free Claude Code :
 
 Si vous utilisez l'extension Claude Code dans VSCode, elle doit pointer vers le proxy local.
 
-**Fichier** : `/Users/valorisa/Library/Application Support/Code/User/settings.json`
+**Fichier** : `/Users/$logname/Library/Application Support/Code/User/settings.json`
 
 **Config ajoutée** :
 
@@ -499,7 +499,7 @@ C'est la méthode la plus stable et la plus facile à comprendre.
 #### Terminal 1 : Lancer le proxy (serveur)
 
 ```bash
-cd /Users/valorisa/Projets/free-claude-code
+cd /Users/$logname/Projets/free-claude-code
 uv run uvicorn server:app --host 0.0.0.0 --port 8082
 ```
 
@@ -536,7 +536,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 Si vous préférez n'utiliser qu'un seul terminal :
 
 ```bash
-cd /Users/valorisa/Projets/free-claude-code
+cd /Users/$logname/Projets/free-claude-code
 uv run uvicorn server:app --host 0.0.0.0 --port 8082 &
 ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
@@ -564,7 +564,7 @@ pkill -f uvicorn
 **Vérifier que le fichier `.env` est correct** :
 
 ```bash
-cat /Users/valorisa/Projets/free-claude-code/.env | grep NVIDIA_NIM_API_KEY
+cat /Users/$logname/Projets/free-claude-code/.env | grep NVIDIA_NIM_API_KEY
 ```
 
 La clé ne doit pas être vide.
@@ -598,7 +598,7 @@ Si quelque chose utilise le port, changez le port dans la commande (`--port 8083
 ### Réinitialiser complètement
 
 ```bash
-cd /Users/valorisa/Projets/free-claude-code
+cd /Users/$logname/Projets/free-claude-code
 rm .env
 cp .env.example .env
 # Puis ré-éditer .env avec votre clé
@@ -631,7 +631,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install 3.14
 
 # Cloner et installer le projet
-cd /Users/valorisa/Projets
+cd /Users/$logname/Projets
 git clone https://github.com/Alishahryar1/free-claude-code.git
 cd free-claude-code
 uv sync
@@ -641,7 +641,7 @@ uv sync
 
 ```bash
 # Éditer le fichier .env
-code /Users/valorisa/Projets/free-claude-code/.env
+code /Users/$logname/Projets/free-claude-code/.env
 # Ajouter : NVIDIA_NIM_API_KEY="nvapi-votre-clé"
 ```
 
@@ -649,7 +649,7 @@ code /Users/valorisa/Projets/free-claude-code/.env
 
 ```bash
 # Terminal 1 : Démarrer le proxy
-cd /Users/valorisa/Projets/free-claude-code
+cd /Users/$logname/Projets/free-claude-code
 uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
 # Terminal 2 : Démarrer Claude Code
