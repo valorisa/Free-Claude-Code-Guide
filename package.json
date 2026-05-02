@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Guide complet d'installation et d'utilisation de Free Claude Code",
   "main": "README.md",
-  "dependencies": {},
+  "dependencies": {
+    "markdownlint-cli": "^0.32.0"
+  },
   "devDependencies": {}
 }
 
