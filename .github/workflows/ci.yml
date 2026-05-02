@@ -11,9 +11,9 @@ jobs:
     name: Markdown Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Install markdownlint-cli
+      - uses: actions/checkout@v5
+       
+       - name: Install markdownlint-cli
         run: npm install -g markdownlint-cli
       
       - name: Run markdownlint
@@ -23,9 +23,9 @@ jobs:
     name: Validate Links
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Install markdown-link-check
+      - uses: actions/checkout@v5
+       
+       - name: Install markdown-link-check
         run: npm install -g markdown-link-check
       
       - name: Check links
@@ -36,9 +36,9 @@ jobs:
     name: Check Spelling (French)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Install codespell
+      - uses: actions/checkout@v5
+       
+       - name: Install codespell
         run: pip install codespell
       
       - name: Run codespell
@@ -48,9 +48,9 @@ jobs:
     name: Verify Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Verify README exists
+      - uses: actions/checkout@v5
+       
+       - name: Verify README exists
         run: |
           test -f README.md && echo "README.md exists"
           head -10 README.md
