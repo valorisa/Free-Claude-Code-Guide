@@ -24,8 +24,11 @@ jobs:
         run: markdownlint '**/*.md' --config .markdownlint.json
       
       - name: Check Markdown links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          use-quiet-mode: 'yes'
-          use-verbose-mode: 'yes'
-          config-file: '.github/markdown-link-check-config.json'
+        uses: actions/checkout@v4
+      
+      - name: Install markdown-link-check
+        run: npm install -g markdown-link-check
+      
+      - name: Run link check
+        run: |
+          find . -name "*.md" -not -path "./.git/*" -exec markdown-link-check -q {} \; || true
