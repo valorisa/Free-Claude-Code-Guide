@@ -1,10 +1,11 @@
+---
 name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   markdown-lint:
@@ -26,7 +27,8 @@ jobs:
         run: npm install -g markdown-link-check
       - name: Check links
         run: |
-          find . -name "*.md" -not -path "./.git/*" -exec markdown-link-check -q {} \; || true
+          find . -name "*.md" -not -path "./.git/*" \
+            -exec markdown-link-check -q {} \; || true
 
   check-spelling:
     name: Check Spelling (French)
