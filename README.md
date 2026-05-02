@@ -197,7 +197,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 >    ```
 >    S'il ne tourne plus, relancez-le :
 >    ```bash
->    cd /Users/valorisa/Projets/free-claude-code && source .venv/bin/activate && python server.py --port 8082 &
+>    cd /Users/$logname/Projets/free-claude-code && source .venv/bin/activate && python server.py --port 8082 &
 >    ```
 > 2. **Lancer Claude Code avec les variables** (depuis n'importe où) :
 >    ```bash
