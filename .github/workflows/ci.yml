@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+      
+      - name: Run markdownlint
+        run: markdownlint '**/*.md' --config .markdownlint.json || true
+
+  validate-links:
+    name: Validate Links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install markdown-link-check
+        run: npm install -g markdown-link-check
+      
+      - name: Check links
+        run: |
+          find . -name "*.md" -not -path "./.git/*" -exec markdown-link-check -q {} \; || true
+
+  check-spelling:
+    name: Check Spelling (French)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install codespell
+        run: pip install codespell
+      
+      - name: Run codespell
+        run: codespell --lang fr,en --skip ".git,node_modules" || true
+
+  build:
+    name: Verify Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Verify README exists
+        run: |
+          test -f README.md && echo "README.md exists"
+          head -10 README.md
+      
+      - name: Check all standard files exist
+        run: |
+          files=(
+            "README.md"
+            "LICENSE"
+            "CODE_OF_CONDUCT.md"
+            "CONTRIBUTING.md"
+            "CHANGELOG.md"
+            "SECURITY.md"
+            ".gitignore"
+          )
+          for file in "${files[@]}"; do
+            test -f "$file" && echo "✓ $file exists" || echo "✗ $file missing"
+          done

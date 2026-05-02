@@ -1,0 +1,31 @@
+name: Markdown Lint
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.md'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/*.md'
+
+jobs:
+  lint:
+    name: Lint Markdown Files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+      
+      - name: Run markdownlint with config
+        run: markdownlint '**/*.md' --config .markdownlint.json
+      
+      - name: Check Markdown links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          config-file: '.github/markdown-link-check-config.json'

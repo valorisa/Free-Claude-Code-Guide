@@ -1,0 +1,25 @@
+{
+  "retry": {
+    "times": 3,
+    "interval": 1000
+  },
+  "timeout": "10s",
+  "deadline": "30s",
+  "baseUrl": "https://github.com/valorisa/Free-Claude-Code-Guide",
+  "replacementPatterns": [
+    {
+      "pattern": "^/",
+      "replacement": "https://github.com/valorisa/Free-Claude-Code-Guide/blob/main/"
+    }
+  ],
+  "httpHeaders": false,
+  "aliveStatusCodes": [200, 206, 301, 302, 307, 308],
+  "ignorePatterns": [
+    {
+      "pattern": "^http://localhost"
+    },
+    {
+      "pattern": "^https://build.nvidia.com/settings/api-keys"
+    }
+  ]
+}

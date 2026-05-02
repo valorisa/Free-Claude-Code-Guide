@@ -1,0 +1,17 @@
+# Code Owners for Free-Claude-Code-Guide
+
+# Default owner for everything
+* @valorisa
+
+# Documentation
+*.md @valorisa
+
+# CI/CD and workflows
+.github/ @valorisa
+
+# Configuration files
+/.editorconfig @valorisa
+/.gitattributes @valorisa
+/.gitignore @valorisa
+/.markdownlint.json @valorisa
+/.github/markdown-link-check-config.json @valorisa
