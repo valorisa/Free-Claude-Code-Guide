@@ -20,11 +20,8 @@ jobs:
       - name: Install markdownlint-cli
         run: npm install -g markdownlint-cli
       
-      - name: Run markdownlint with config
+      - name: Run markdownlint
         run: markdownlint '**/*.md' --config .markdownlint.json
-      
-      - name: Check Markdown links
-        uses: actions/checkout@v4
       
       - name: Install markdown-link-check
         run: npm install -g markdown-link-check
