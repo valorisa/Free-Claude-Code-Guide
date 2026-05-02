@@ -1,6 +1,8 @@
 # Free Claude Code - Guide Complet d'Installation et d'Utilisation
 
-> **IMPORTANT** : Ce guide est un "pense-bête" exhaustif créé après une session d'installation complète sur macOS Sequoia avec VSCode. Il contient toutes les subtilés, nuances et décisions techniques prises lors de l'installation.
+> **IMPORTANT** : Ce guide est un "pense-bête" exhaustif créé après une session d'installation complète sur macOS Sequoia avec VSCode.
+> Il contient toutes les subtilités, nuances et décisions techniques prises lors de l'installation.
+> Il sert de référence complète pour l'utilisation de Free Claude Code.
 
 ---
 
@@ -8,9 +10,12 @@
 
 ### Windows 10/11 Enterprise
 
-**Particularités** : Les environnements d'entreprise imposent souvent des restrictions (proxy sortant, antivirus, politiques de groupe).
+**Particularités** : Les environnements d'entreprise imposent souvent des restrictions.
+Cela inclut le proxy, l'antivirus, et les politiques de groupe.
+Une configuration spécifique est nécessaire.
 
 **Installation de uv** (PowerShell en tant qu'administrateur) :
+
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 uv self update
@@ -19,11 +24,13 @@ uv python install 3.14
 
 **Configuration du proxy d'entreprise** :
 Si votre entreprise impose un proxy sortant, éditez le fichier `.env` :
+
 ```dotenv
 NVIDIA_NIM_PROXY="http://utilisateur:motdepasse@proxy-entreprise:8080"
 ```
 
 **Cloner le dépôt** (PowerShell) :
+
 ```powershell
 cd C:\Projets
 git clone https://github.com/Alishahryar1/free-claude-code.git
@@ -32,6 +39,7 @@ Copy-Item .env.example .env
 ```
 
 **Lancer le proxy et Claude Code** (deux terminaux PowerShell) :
+
 ```powershell
 # Terminal 1
 cd C:\Projets\free-claude-code
@@ -44,6 +52,7 @@ claude
 ```
 
 **⚠️ Notes spécifiques Windows Enterprise** :
+
 - Ajoutez `uv` au PATH manuellement si nécessaire : `%USERPROFILE%\.cargo\bin` ou `%USERPROFILE%\.local\bin`
 - Désactivez temporairement l'antivirus si le téléchargement de Python 3.14 échoue
 - Les dossiers avec espaces peuvent poser problème : préférez `C:\Projets` à `C:\Users\Mon Nom\Projets`
@@ -55,6 +64,7 @@ claude
 **Particularités** : macOS est le système le plus simple pour ce projet. Homebrew est recommandé pour les dépendances.
 
 **Installation de uv** (Terminal zsh/bash) :
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv self update
@@ -62,6 +72,7 @@ uv python install 3.14
 ```
 
 **Cloner le dépôt** :
+
 ```bash
 cd /Users/valorisa/Projets
 git clone https://github.com/Alishahryar1/free-claude-code.git
@@ -70,6 +81,7 @@ cp .env.example .env
 ```
 
 **Lancer le proxy et Claude Code** :
+
 ```bash
 # Terminal 1
 cd /Users/valorisa/Projets/free-claude-code
@@ -80,6 +92,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 **⚠️ Notes spécifiques macOS** :
+
 - Si vous utilisez un Mac avec puce Apple Silicon (M1/M2/M3/M4), Python 3.14 s'installera en version `aarch64` (natif)
 - Les permissions Gatekeeper peuvent bloquer l'exécution : allez dans Préférences > Sécurité pour autoriser
 - Pour VSCode, l'extension utilise les variables d'environnement configurées dans `settings.json`
@@ -91,6 +104,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 **Particularités** : Linux offre la meilleure compatibilité. Aucune restriction système majeure.
 
 **Installation de uv** (Terminal bash/zsh) :
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv self update
@@ -98,6 +112,7 @@ uv python install 3.14
 ```
 
 **Cloner le dépôt** :
+
 ```bash
 cd ~/Projets
 git clone https://github.com/Alishahryar1/free-claude-code.git
@@ -106,6 +121,7 @@ cp .env.example .env
 ```
 
 **Lancer le proxy et Claude Code** :
+
 ```bash
 # Terminal 1
 cd ~/Projets/free-claude-code
@@ -116,49 +132,56 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 **⚠️ Notes spécifiques Linux** :
+
 - Pour les serveurs sans GUI, utilisez `tmux` ou `screen` pour laisser le proxy tourner en arrière-plan :
+
   ```bash
   tmux new -s proxy
   uv run uvicorn server:app --host 0.0.0.0 --port 8082
   # Ctrl+B puis D pour détacher
   # tmux attach -t proxy pour revenir
   ```
+
 - Si vous utilisez `firewalld` (Fedora/RHEL) ou `ufw` (Ubuntu), ouvrez le port 8082 :
+
   ```bash
   sudo ufw allow 8082/tcp
   # ou
   sudo firewall-cmd --permanent --add-port=8082/tcp && sudo firewall-cmd --reload
   ```
+
 - L'intégration VSCode fonctionne de la même manière que sur macOS
 
 ---
 
 ## 📚 Table des matières
 
-1. [Qu'est-ce que Free Claude Code ?](#quest-ce-que-free-claude-code-)
-2. [Architecture et Fonctionnement](#architecture-et-fonctionnement)
-3. [Emplacement du Projet](#emplacement-du-projet)
-4. [Pré-requis et Installation](#pré-requis-et-installation)
-5. [Configuration Détaillée](#configuration-détaillée)
-6. [Comprendre le Routage des Modèles](#comprendre-le-routage-des-modèles)
-7. [Intégration VSCode](#intégration-vscode)
-8. [Utilisation Quotidienne](#utilisation-quotidienne)
-9. [Choix des Modèles NVIDIA NIM](#choix-des-modèles-nvidia-nim)
-10. [Dépannage et Subtilités](#dépannage-et-subtilités)
-11. [Résumé des Commandes](#résumé-des-commandes)
+1. [Qu'est-ce que Free Claude Code ?](#-quest-ce-que-free-claude-code-)
+2. [Architecture et Fonctionnement](#-architecture-et-fonctionnement)
+3. [Emplacement du Projet](#-emplacement-du-projet)
+4. [Pré-requis et Installation](#-pré-requis-et-installation)
+5. [Configuration Détaillée](#-configuration-détaillée)
+6. [Comprendre le Routage des Modèles](#-comprendre-le-routage-des-modèles)
+7. [Intégration VSCode](#-intégration-vscode)
+8. [Utilisation Quotidienne](#-utilisation-quotidienne)
+9. [Choix des Modèles NVIDIA NIM](#-choix-des-modèles-nvidia-nim)
+10. [Dépannage et Subtilités](#-dépannage-et-subtilités)
+11. [Résumé des Commandes](#-résumé-des-commandes)
 
 ---
 
 ## 🤖 Qu'est-ce que Free Claude Code ?
 
-**Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy** qui redirige les appels API d'Anthropic (utilisés par Claude Code CLI) vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
+**Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy** qui redirige les appels API d'Anthropic vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
 
 ### Ce que ça fait :
+
 - Intercepte les requêtes que Claude Code envoie normalement aux serveurs d'Anthropic
 - Les redirige vers NVIDIA NIM (ou OpenRouter, DeepSeek, LM Studio, etc.)
 - Permet d'utiliser Claude Code CLI avec des modèles **gratuits** ou **personnels**
 
 ### Ce que ça N'EST PAS :
+
 - Ce n'est **pas** une version crackée de Claude Code
 - Ce n'est **pas** un remplacement des modèles Claude d'Anthropic
 - Les "tiers" Opus/Sonnet/Haiku de Claude Code sont **routés** vers d'autres modèles (GLM-4.7, Kimi K2, etc.)
@@ -167,7 +190,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 
 ## 🏗️ Architecture et Fonctionnement
 
-```
+```text
 ┌─────────────────┐         ┌──────────────────────┐         ┌─────────────────┐
 │  Claude Code    │         │  Free Claude Code    │         │   NVIDIA NIM   │
 │  CLI ou VSCode  │────────>│  Proxy (port 8082)  │────────>│   (modèles     │
@@ -176,25 +199,30 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 ### Flux de données :
+
 1. **Claude Code** envoie une requête API Anthropic (format Messages API)
 2. **Free Claude Code** (proxy local) intercepte la requête sur `http://localhost:8082`
-3. Le proxy **traduit** la requête au format attendu par le fournisseur (NVIDIA NIM utilise OpenAI chat format)
+3. Le proxy **traduit** la requête au format attendu par le fournisseur
 4. **NVIDIA NIM** traite la requête et renvoie la réponse
-5. Le proxy **reformate** la réponse au format Anthropic pour que Claude Code la comprenne
+5. Le proxy **reformate** la réponse au format Anthropic
 
 ### Points subtils à comprendre :
 
 #### 1. Le concept de "Proxy Sortant" (NVIDIA_NIM_PROXY)
+
 ```dotenv
 NVIDIA_NIM_PROXY=""
 ```
+
 - Cette option sert à ajouter un **proxy intermédiaire** entre Free Claude Code et NVIDIA NIM
 - Exemple : Si vous êtes en entreprise avec un proxy sortant `http://proxy:8080`
 - **Usage personnel à la maison** : Laissez vide
 - **Ce n'est PAS un double proxy** entre Claude Code et Free Claude Code (ils sont sur la même machine)
 
 #### 2. Le routage Opus/Sonnet/Haiku
+
 Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilibré, Haiku = rapide). Ces tiers sont **virtuels** dans ce contexte et sont routés vers des vrais modèles :
+
 - `MODEL_OPUS` → Normalement pour tâches complexes (ex: Kimi K2)
 - `MODEL_SONNET` → Équilibré (ex: GLM-4.7)
 - `MODEL_HAIKU` → Rapide (ex: MiniMax M1)
@@ -205,12 +233,14 @@ Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilib
 ## 📁 Emplacement du Projet
 
 **Dossier du projet Free Claude Code** :
-```
+
+```text
 /Users/valorisa/Projets/free-claude-code
 ```
 
 **Dossier de ce guide** :
-```
+
+```text
 /Users/valorisa/Projets/free-claude-code-guide
 ```
 
@@ -220,13 +250,14 @@ Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilib
 
 ### Étape 1 : Installer uv (gestionnaire de paquets Python moderne)
 
-`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python.
+`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet.
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 Vérifier l'installation :
+
 ```bash
 which uv
 # Devrait afficher : /Users/valorisa/.local/bin/uv
@@ -255,9 +286,10 @@ uv sync
 ```
 
 **Ce que cette commande fait** :
+
 - Crée un environnement virtuel Python dans `.venv`
 - Installe toutes les dépendances listées dans `pyproject.toml`
-- Les dépendances incluent : FastAPI (serveur web), httpx (client HTTP), OpenAI (pour NVIDIA NIM), etc.
+- Les dépendances incluent : FastAPI, httpx, OpenAI, etc.
 
 ---
 
@@ -266,19 +298,20 @@ uv sync
 ### Le fichier `.env`
 
 Le fichier `.env` contient toute la configuration. Il est situé à :
-```
+
+```text
 /Users/valorisa/Projets/free-claude-code/.env
 ```
 
 #### 1. Clé API NVIDIA NIM (OBLIGATOIRE)
 
-Obtenir une clé gratuite sur : https://build.nvidia.com/settings/api-keys
+Obtenir une clé gratuite sur : <https://build.nvidia.com/settings/api-keys>
 
 ```dotenv
 NVIDIA_NIM_API_KEY="nvapi-votre-clé-ici"
 ```
 
-**⚠️ Sécurité** : Ne jamais partager ce fichier avec votre clé. Ajoutez `.env` à votre `.gitignore` si vous versionnez.
+**⚠️ Sécurité** : Ne jamais partager ce fichier avec votre clé. Ajoutez `.env` à votre `.gitignore`.
 
 #### 2. Configuration des Modèles (Optionnel mais recommandé)
 
@@ -291,7 +324,8 @@ MODEL="nvidia_nim/z-ai/glm4.7"                  # Fallback si les autres sont vi
 ```
 
 **Format** : `provider_type/model/name`
-- `nvidia_nim` = provider
+
+- `nvidia_nim` = fournisseur
 - `z-ai` = organisation
 - `glm4.7` = nom du modèle
 
@@ -309,7 +343,7 @@ Ce token est **local** et **fictif**. Claude Code l'envoie au proxy, et le proxy
 ENABLE_MODEL_THINKING=true
 ```
 
-Cela active les blocs de réflexion (équivalent au `<thinking>` de Claude). Les options par modèle (`ENABLE_OPUS_THINKING`, etc.) héritent de cette valeur si elles sont vides.
+Cela active les blocs de réflexion. Les options par modèle héritent de cette valeur.
 
 #### 5. Configuration du serveur
 
@@ -336,19 +370,21 @@ PROVIDER_MAX_CONCURRENCY=5
 - Ils n'ont **rien à voir** l'un avec l'autre
 
 Dans Free Claude Code :
+
 - Quand Claude Code "demande" Opus → Le proxy envoie la requête vers le modèle défini dans `MODEL_OPUS`
 - Si vous mettez `MODEL_OPUS="nvidia_nim/z-ai/glm4.7"`, alors "Opus" = GLM-4.7 (c'est juste un alias)
 
 ### Comparaison des modèles NVIDIA NIM
 
 | Modèle | Identifiant complet | Points forts | Points faibles |
-|--------|---------------------|-------------|----------------|
-| **GLM-4.7** | `nvidia_nim/z-ai/glm4.7` | Équilibré, fiable, bon pour le code | - |
-| **Kimi K2** | `nvidia_nim/moonshotai/kimi-k2` | Très capable, gros contexte | Moins testé avec Claude Code |
-| **MiniMax M1** | `nvidia_nim/minimax/minimax-m1` | Rapide, bon pour tâches simples | Moins puissant |
+| ------- | ------------------- | ------------ | -------------- |
+| **GLM-4.7** | `nvidia_nim/z-ai/glm4.7` | Équilibré, fiable | - |
+| **Kimi K2** | `nvidia_nim/moonshotai/kimi-k2` | Très capable | Moins testé |
+| **MiniMax M1** | `nvidia_nim/minimax/minimax-m1` | Rapide | Moins puissant |
 
 **Recommandation** :
-- Pour une utilisation générale avec Claude Code CLI : **GLM-4.7** (c'est le modèle par défaut du projet pour une raison)
+
+- Pour une utilisation générale avec Claude Code CLI : **GLM-4.7**
 - Pour des tâches plus complexes : **Kimi K2**
 - Pour des tâches rapides/simples : **MiniMax M1**
 
@@ -360,9 +396,10 @@ Dans Free Claude Code :
 
 Si vous utilisez l'extension Claude Code dans VSCode, elle doit pointer vers le proxy local.
 
-**Fichier de configuration** : `/Users/valorisa/Library/Application Support/Code/User/settings.json`
+**Fichier** : `/Users/valorisa/Library/Application Support/Code/User/settings.json`
 
-**Configuration ajoutée** :
+**Config ajoutée** :
+
 ```json
 "claudeCode.environmentVariables": [
     { "name": "ANTHROPIC_BASE_URL", "value": "http://localhost:8082" },
@@ -371,9 +408,10 @@ Si vous utilisez l'extension Claude Code dans VSCode, elle doit pointer vers le 
 ```
 
 **⚠️ Points subtils** :
-1. **Pas de `/v1`** à la fin de l'URL : Utilisez `http://localhost:8082` (pas `http://localhost:8082/v1`)
-2. **Recharger l'extension** : Après modification de `settings.json`, rechargez l'extension Claude Code dans VSCode
-3. **Le proxy doit tourner** : L'extension ne fonctionnera que si le proxy (Terminal 1) est actif
+
+1. **Pas de `/v1`** à la fin de l'URL
+2. **Recharger l'extension** : Après modification de `settings.json`
+3. **Le proxy doit tourner** : L'extension ne fonctionnera que si le proxy est actif
 
 ### Si l'extension affiche un écran de connexion
 
@@ -397,6 +435,7 @@ uv run uvicorn server:app --host 0.0.0.0 --port 8082
 ```
 
 **Ce que cette commande fait** :
+
 - `uv run` : Exécute la commande dans l'environnement virtuel du projet
 - `uvicorn` : Serveur web ASGI (comme gunicorn mais pour Python asynchrone)
 - `server:app` : Le fichier `server.py` et la variable `app` (l'application FastAPI)
@@ -412,11 +451,13 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 **Ce que cette commande fait** :
+
 - Définit `ANTHROPIC_AUTH_TOKEN` pour cette session uniquement
 - Définit `ANTHROPIC_BASE_URL` pour rediriger vers le proxy local
 - Lance `claude` (CLI de Claude Code)
 
 **Note** : Claude Code doit être installé séparément. Si ce n'est pas le cas :
+
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
 ```
@@ -432,11 +473,13 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 **Explication du `&`** :
+
 - Le `&` à la fin de la première commande la met en **arrière-plan**
 - Le terminal peut alors exécuter la deuxième commande
 - Le proxy tourne en tâche de fond
 
 **Pour arrêter le proxy plus tard** :
+
 ```bash
 kill %1
 # ou
@@ -450,15 +493,19 @@ pkill -f uvicorn
 ### Le proxy ne démarre pas
 
 **Vérifier que le fichier `.env` est correct** :
+
 ```bash
 cat /Users/valorisa/Projets/free-claude-code/.env | grep NVIDIA_NIM_API_KEY
 ```
+
 La clé ne doit pas être vide.
 
 **Vérifier que le port 8082 n'est pas utilisé** :
+
 ```bash
 lsof -i :8082
 ```
+
 Si quelque chose utilise le port, changez le port dans la commande (`--port 8083` par exemple).
 
 ### Claude Code ne se connecte pas
@@ -466,6 +513,7 @@ Si quelque chose utilise le port, changez le port dans la commande (`--port 8083
 **Symptôme** : Claude Code affiche une erreur de connexion.
 
 **Vérifications** :
+
 1. Le proxy tourne (Terminal 1 actif)
 2. L'URL est correcte : `http://localhost:8082` (pas de `/v1`)
 3. Le token est défini : `ANTHROPIC_AUTH_TOKEN="freecc"`
@@ -473,6 +521,7 @@ Si quelque chose utilise le port, changez le port dans la commande (`--port 8083
 ### Les modèles ne répondent pas comme attendu
 
 **Vérifier les logs du proxy** (Terminal 1) :
+
 - Les erreurs de l'API NVIDIA NIM s'affichent ici
 - Vérifiez que votre clé API est valide
 - Vérifiez que le modèle demandé existe sur NVIDIA NIM
@@ -489,9 +538,11 @@ cp .env.example .env
 ### Question fréquente : "Puis-je utiliser de vrais modèles Claude ?"
 
 **Oui, mais** :
-- Il faut utiliser le provider `open_router` avec une clé API OpenRouter
+
+- Il faut utiliser le provider `open_router` avec une clé API
 - Ce n'est **pas gratuit** (OpenRouter facture à l'usage)
 - Dans ce cas, configurez :
+
   ```dotenv
   OPENROUTER_API_KEY="sk-or-votre-clé"
   MODEL_OPUS="open_router/anthropic/claude-3-opus"
@@ -502,6 +553,7 @@ cp .env.example .env
 ## 📝 Résumé des Commandes Essentielles
 
 ### Installation (à faire une seule fois)
+
 ```bash
 # Installer uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -517,6 +569,7 @@ uv sync
 ```
 
 ### Configuration (à faire une seule fois)
+
 ```bash
 # Éditer le fichier .env
 code /Users/valorisa/Projets/free-claude-code/.env
@@ -524,6 +577,7 @@ code /Users/valorisa/Projets/free-claude-code/.env
 ```
 
 ### Utilisation quotidienne
+
 ```bash
 # Terminal 1 : Démarrer le proxy
 cd /Users/valorisa/Projets/free-claude-code
@@ -534,6 +588,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 ### Vérifications
+
 ```bash
 # Voir les processus uvicorn
 ps aux | grep uvicorn
@@ -549,10 +604,10 @@ curl http://localhost:8082/v1/models
 
 ## 📚 Ressources et Liens
 
-- **Dépôt Free Claude Code** : https://github.com/Alishahryar1/free-claude-code
-- **Obtenir une clé NVIDIA NIM** : https://build.nvidia.com/settings/api-keys
-- **Documentation uv** : https://docs.astral.sh/uv/
-- **Claude Code officiel** : https://claude.ai/ (pour installer le CLI)
+- **Dépôt Free Claude Code** : [GitHub](https://github.com/Alishahryar1/free-claude-code)
+- **Obtenir une clé NVIDIA NIM** : [NVIDIA](https://build.nvidia.com/settings/api-keys)
+- **Documentation uv** : [Docs](https://docs.astral.sh/uv/)
+- **Claude Code officiel** : [Site](https://claude.ai/) (pour installer le CLI)
 
 ---
 

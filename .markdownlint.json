@@ -14,5 +14,9 @@
   "MD024": false,
   "MD036": false,
   "MD037": false,
-  "MD039": false
+  "MD039": false,
+  "MD060": {
+    "style": "any"
+  },
+  "MD051": false
 }

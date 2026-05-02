@@ -19,23 +19,23 @@ By participating in this project, you agree to abide by our [Code of Conduct](CO
 
 ### Reporting Bugs
 
-Before creating bug reports, please check the issue list to avoid duplicates. When creating a bug report, include as many details as possible:
+Before creating bug reports, please check the issue list to avoid duplicates. When creating a bug report, include as many details as possible :
 
-* **Use a clear and descriptive title**
-* **Describe the exact steps to reproduce the problem**
-* **Provide specific examples to demonstrate the steps**
-* **Describe the behavior you observed and what you expected to see**
-* **Include screenshots if applicable**
-* **Include your OS, Python version, and uv version**
+- **Use a clear and descriptive title**
+- **Describe the exact steps to reproduce**
+- **Provide specific examples**
+- **Describe the behavior observed**
+- **Include screenshots if applicable**
+- **Include your OS, Python, uv version**
 
 ### Suggesting Enhancements
 
 Enhancement suggestions are tracked as GitHub issues:
 
-* **Use a clear and descriptive title**
-* **Provide a step-by-step description of the suggested enhancement**
-* **Explain why this enhancement would be useful**
-* **List some other guides or projects where this enhancement exists**
+- **Use a clear and descriptive title**
+- **Provide a step-by-step description of the suggested enhancement**
+- **Explain why this enhancement would be useful**
+- **List some other guides or projects where this enhancement exists**
 
 ### Pull Request Process
 
@@ -49,25 +49,25 @@ Enhancement suggestions are tracked as GitHub issues:
 
 ### Markdown Style
 
-* Use [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/)
-* Limit lines to 120 characters where possible
-* Use fenced code blocks with language identifiers
-* Use tables for structured data
-* Use emojis sparingly and only when relevant
+- Use [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+- Limit lines to 120 characters where possible
+- Use fenced code blocks with language identifiers
+- Use tables for structured data
+- Use emojis sparingly and only when relevant
 
 ### Git Commit Messages
 
-* Use the present tense ("Add feature" not "Added feature")
-* Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
-* Limit the first line to 72 characters or less
-* Reference issues and pull requests liberally after the first line
+- Use the present tense ("Add feature" not "Added feature")
+- Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+- Limit the first line to 72 characters or less
+- Reference issues and pull requests liberally after the first line
 
 ### Documentation
 
-* Write in French (primary language of this guide)
-* Be explicit and verbose when explaining technical concepts
-* Include examples for every configuration option
-* Explain "why" not just "how"
+- Write in French (primary language)
+- Be explicit and verbose for technical concepts
+- Include examples for every option
+- Explain "why" not just "how"
 
 ## Review Process
 

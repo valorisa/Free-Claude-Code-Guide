@@ -3,10 +3,11 @@
 ## Reporting a Vulnerability
 
 We take the security of Free-Claude-Code-Guide seriously. If you believe you have found a security vulnerability, please report it to us as described below.
+This is important for the safety of the project.
 
 ### How to Report a Security Vulnerability?
 
-If you find a security vulnerability, do **NOT** open a public issue. Instead, please report it privately by emailing us at [valorisa@example.com].
+If you find a security vulnerability, do **NOT** open a public issue. Instead, please report it privately by emailing us at the address shown below.
 
 Please include the following information in your report:
 
@@ -72,7 +73,7 @@ This security policy covers:
 
 This policy does **NOT** cover:
 
-* The upstream `free-claude-code` project (https://github.com/Alishahryar1/free-claude-code)
+* The upstream `free-claude-code` project (<https://github.com/Alishahryar1/free-claude-code>)
 * NVIDIA NIM services
 * Claude Code CLI software
 

@@ -4,7 +4,7 @@ This document provides instructions for developers who want to contribute to or 
 
 ## Project Structure
 
-```
+```text
 Free-Claude-Code-Guide/
 ├── .github/
 │   ├── workflows/          # CI/CD pipelines
@@ -35,8 +35,8 @@ Free-Claude-Code-Guide/
 ### Prerequisites
 
 - Git
-- Node.js (for markdownlint-cli and markdown-link-check)
-- Python 3 (for codespell)
+- Node.js (pour markdownlint-cli)
+- Python 3 (pour codespell)
 
 ### Installing Tools
 
@@ -62,7 +62,7 @@ markdownlint '**/*.md' --config .markdownlint.json
 # Check for broken links
 find . -name "*.md" -not -path "./.git/*" -exec markdown-link-check -q {} \;
 
-# Check spelling (French and English)
+# Check spelling
 codespell --lang fr,en --skip ".git,node_modules"
 ```
 
@@ -79,6 +79,7 @@ git checkout -b fix/your-bug-fix
 ### 2. Make Your Changes
 
 Edit the relevant files. Remember:
+
 - Write in French (primary language)
 - Be explicit and verbose in explanations
 - Include examples for every configuration option
@@ -116,6 +117,7 @@ Then create a Pull Request on GitHub using the template.
 ## CI/CD Pipeline
 
 The CI pipeline runs automatically on:
+
 - Pushes to `main` branch
 - Pull requests targeting `main` branch
 
@@ -163,6 +165,7 @@ The CI pipeline runs automatically on:
 ## Getting Help
 
 If you need help:
+
 1. Check existing issues on GitHub
 2. Review the CONTRIBUTING.md guidelines
 3. Create a new issue with the "question" label
