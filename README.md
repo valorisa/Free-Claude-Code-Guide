@@ -193,7 +193,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```text
 ┌─────────────────┐         ┌──────────────────────┐         ┌─────────────────┐
 │  Claude Code    │         │  Free Claude Code    │         │   NVIDIA NIM    │
-│  CLI ou VSCode  │────────>│  Proxy (port 8082)   │────────>│    (modèles     │ 
+│  CLI ou VSCode  │────────>│  Proxy (port 8082)  │────────>│   (modèles     │
 │                 │         │                      │         │   gratuits)     │
 └─────────────────┘         └──────────────────────┘         └─────────────────┘
 ```
