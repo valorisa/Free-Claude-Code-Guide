@@ -68,14 +68,17 @@ Copy-Item .env.example .env
 **Lancer le proxy et Claude Code** (deux terminaux PowerShell) :
 
 ```powershell
-# Terminal 1
+# Terminal1
 cd C:\Projets\free-claude-code
 uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
-# Terminal 2
+# Terminal2
 $env:ANTHROPIC_AUTH_TOKEN="freecc"
 $env:ANTHROPIC_BASE_URL="http://localhost:8082"
 claude
+
+# En une seule commande (PowerShell)
+$env:ANTHROPIC_AUTH_TOKEN="freecc"; $env:ANTHROPIC_BASE_URL="http://localhost:8082"; claude
 ```
 
 **⚠️ Notes spécifiques Windows Enterprise** :
@@ -110,11 +113,14 @@ cp .env.example .env
 **Lancer le proxy et Claude Code** :
 
 ```bash
-# Terminal 1
+# Terminal1
 cd /Users/valorisa/Projets/free-claude-code
 uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
-# Terminal 2
+# Terminal2
+ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
+
+# En une seule commande
 ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
@@ -150,11 +156,14 @@ cp .env.example .env
 **Lancer le proxy et Claude Code** :
 
 ```bash
-# Terminal 1
+# Terminal1
 cd ~/Projets/free-claude-code
 uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
-# Terminal 2
+# Terminal2
+ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
+
+# En une seule commande
 ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
