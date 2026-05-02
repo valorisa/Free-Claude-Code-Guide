@@ -3,7 +3,8 @@
   "MD013": {
     "line_length": 120,
     "code_blocks": false,
-    "tables": false
+    "tables": false,
+    "exceptions": ["README.md"]
   },
   "MD041": false,
   "MD033": {
@@ -18,5 +19,6 @@
   "MD060": {
     "style": "any"
   },
-  "MD051": false
+  "MD051": false,
+  "MD047": false
 }

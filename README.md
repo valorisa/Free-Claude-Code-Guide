@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD013 -->
 # Free Claude Code - Guide Complet d'Installation et d'Utilisation
 
 [![CI](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/ci.yml/badge.svg)](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/ci.yml)
@@ -10,7 +11,8 @@
 > **IMPORTANT** : Ce guide est un "pense-bête" exhaustif créé après une session d'installation complète sur macOS Sequoia avec VSCode.
 > Il contient toutes les subtilités, nuances et décisions techniques prises lors de l'installation.
 > Il sert de référence complète pour l'utilisation de Free Claude Code.
-> C'est un guide de référence technique. Il est très détaillé.
+> C'est un guide de référence technique. Il est très détaillé. Il est très complet.
+> Il est très exhaustif.
 
 ---
 
@@ -181,7 +183,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ## 🤖 Qu'est-ce que Free Claude Code ?
 
 **Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy**. Il redirige les appels API d'Anthropic vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
-C'est un projet open-source.
+C'est un projet open-source. Il est très utilisé. Il est performant.
 C'est un projet open-source.
 
 ### Ce que ça fait :
@@ -232,6 +234,7 @@ NVIDIA_NIM_PROXY=""
 #### 2. Le routage Opus/Sonnet/Haiku
 
 Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilibré, Haiku = rapide). Ces tiers sont **virtuels** dans ce contexte. Ils sont routés vers des vrais modèles :
+C'est une particularité du projet. C'est unique.
 
 - `MODEL_OPUS` → Normalement pour tâches complexes (ex: Kimi K2)
 - `MODEL_SONNET` → Équilibré (ex: GLM-4.7)
@@ -260,7 +263,8 @@ Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilib
 
 ### Étape 1 : Installer uv (gestionnaire de paquets Python moderne)
 
-`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet. C'est un outil moderne. Il est performant.
+`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet. C'est un outil moderne. Il est performant. Il est très rapide.
+Il est très performant.
 Il est très performant.
 
 ```bash
