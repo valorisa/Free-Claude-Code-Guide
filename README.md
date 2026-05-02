@@ -15,23 +15,25 @@
 > C'est un guide de référence technique. Il est très détaillé. Il est très complet.
 > Il est très exhaustif.
 
-## 📚 Table des matières
+## Table des matières
 
-1. [Qu'est-ce que Free Claude Code ?](#-quest-ce-que-free-claude-code-)
-2. [Architecture et Fonctionnement](#-architecture-et-fonctionnement)
-3. [Emplacement du Projet](#-emplacement-du-projet)
-4. [Pré-requis et Installation](#-pré-requis-et-installation)
-5. [Configuration Détaillée](#-configuration-détaillée)
-6. [Comprendre le Routage des Modèles](#-comprendre-le-routage-des-modèles)
-7. [Intégration VSCode](#-intégration-vscode)
-8. [Utilisation Quotidienne](#-utilisation-quotidienne)
-9. [Choix des Modèles NVIDIA NIM](#-choix-des-modèles-nvidia-nim)
-10. [Dépannage et Subtilités](#-dépannage-et-subtilités)
-11. [Résumé des Commandes](#-résumé-des-commandes)
+1. [Instructions par Système d'Exploitation](#instructions-par-système-dexploitation)
+2. [Qu'est-ce que Free Claude Code ?](#quest-ce-que-free-claude-code-)
+3. [Architecture et Fonctionnement](#architecture-et-fonctionnement)
+4. [Emplacement du Projet](#emplacement-du-projet)
+5. [Pré-requis et Installation](#pré-requis-et-installation)
+6. [Configuration Détaillée](#configuration-détaillée)
+7. [Comprendre le Routage des Modèles](#comprendre-le-routage-des-modèles)
+8. [Intégration VSCode](#intégration-vscode)
+9. [Utilisation Quotidienne](#utilisation-quotidienne)
+10. [Dépannage et Subtilités](#dépannage-et-subtilités)
+11. [Résumé des Commandes Essentielles](#résumé-des-commandes-essentielles)
+12. [Ressources et Liens](#ressources-et-liens)
+13. [Avertissements et Bonnes Pratiques](#avertissements-et-bonnes-pratiques)
 
 ---
 
-## 🖥️ Instructions par Système d'Exploitation
+## Instructions par Système d'Exploitation
 
 ### Windows 10/11 Enterprise
 
@@ -179,7 +181,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 
 ---
 
-## 🤖 Qu'est-ce que Free Claude Code ?
+## Qu'est-ce que Free Claude Code ?
 
 **Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy**. Il redirige les appels API d'Anthropic vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
 C'est un projet open-source. Il est très utilisé. Il est performant.
@@ -199,7 +201,7 @@ C'est un projet open-source.
 
 ---
 
-## 🏗️ Architecture et Fonctionnement
+## Architecture et Fonctionnement
 
 ```text
 ┌─────────────────┐         ┌──────────────────────┐         ┌─────────────────┐
@@ -242,7 +244,7 @@ C'est une particularité du projet. C'est unique.
 
 ---
 
-## 📁 Emplacement du Projet
+## Emplacement du Projet
 
 **Dossier du projet Free Claude Code** :
 
@@ -258,7 +260,7 @@ C'est une particularité du projet. C'est unique.
 
 ---
 
-## ⚙️ Pré-requis et Installation
+## Pré-requis et Installation
 
 ### Étape 1 : Installer uv (gestionnaire de paquets Python moderne)
 
@@ -307,7 +309,7 @@ uv sync
 
 ---
 
-## 🔧 Configuration Détaillée
+## Configuration Détaillée
 
 ### Le fichier `.env`
 
@@ -374,7 +376,7 @@ PROVIDER_MAX_CONCURRENCY=5
 
 ---
 
-## 🧠 Comprendre le Routage des Modèles
+## Comprendre le Routage des Modèles
 
 ### La confusion "Opus 4.7"
 
@@ -405,7 +407,7 @@ Dans Free Claude Code :
 
 ---
 
-## 💻 Intégration VSCode
+## Intégration VSCode
 
 ### Extension Claude Code
 
@@ -436,7 +438,7 @@ Si vous utilisez l'extension Claude Code dans VSCode, elle doit pointer vers le 
 
 ---
 
-## 🚀 Utilisation Quotidienne
+## Utilisation Quotidienne
 
 ### Méthode recommandée : Deux terminaux
 
@@ -503,7 +505,7 @@ pkill -f uvicorn
 
 ---
 
-## 🧩 Dépannage et Subtilités
+## Dépannage et Subtilités
 
 ### Le proxy ne démarre pas
 
@@ -565,7 +567,7 @@ cp .env.example .env
 
 ---
 
-## 📝 Résumé des Commandes Essentielles
+## Résumé des Commandes Essentielles
 
 ### Installation (à faire une seule fois)
 
@@ -617,7 +619,7 @@ curl http://localhost:8082/v1/models
 
 ---
 
-## 📚 Ressources et Liens
+## Ressources et Liens
 
 - **Dépôt Free Claude Code** : [GitHub](https://github.com/Alishahryar1/free-claude-code)
 - **Obtenir une clé NVIDIA NIM** : [NVIDIA](https://build.nvidia.com/settings/api-keys)
@@ -626,7 +628,7 @@ curl http://localhost:8082/v1/models
 
 ---
 
-## ⚠️ Avertissements et Bonnes Pratiques
+## Avertissements et Bonnes Pratiques
 
 1. **Sécurité** : Ne commitez jamais votre fichier `.env` avec la clé API
 2. **Mises à jour** : Free Claude Code est un projet actif, faites `git pull` régulièrement
