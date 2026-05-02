@@ -14,6 +14,20 @@
 > C'est un guide de référence technique. Il est très détaillé. Il est très complet.
 > Il est très exhaustif.
 
+## 📚 Table des matières
+
+1. [Qu'est-ce que Free Claude Code ?](#-quest-ce-que-free-claude-code-)
+2. [Architecture et Fonctionnement](#-architecture-et-fonctionnement)
+3. [Emplacement du Projet](#-emplacement-du-projet)
+4. [Pré-requis et Installation](#-pré-requis-et-installation)
+5. [Configuration Détaillée](#-configuration-détaillée)
+6. [Comprendre le Routage des Modèles](#-comprendre-le-routage-des-modèles)
+7. [Intégration VSCode](#-intégration-vscode)
+8. [Utilisation Quotidienne](#-utilisation-quotidienne)
+9. [Choix des Modèles NVIDIA NIM](#-choix-des-modèles-nvidia-nim)
+10. [Dépannage et Subtilités](#-dépannage-et-subtilités)
+11. [Résumé des Commandes](#-résumé-des-commandes)
+
 ---
 
 ## 🖥️ Instructions par Système d'Exploitation
@@ -161,22 +175,6 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
   ```
 
 - L'intégration VSCode fonctionne de la même manière que sur macOS
-
----
-
-## 📚 Table des matières
-
-1. [Qu'est-ce que Free Claude Code ?](#-quest-ce-que-free-claude-code-)
-2. [Architecture et Fonctionnement](#-architecture-et-fonctionnement)
-3. [Emplacement du Projet](#-emplacement-du-projet)
-4. [Pré-requis et Installation](#-pré-requis-et-installation)
-5. [Configuration Détaillée](#-configuration-détaillée)
-6. [Comprendre le Routage des Modèles](#-comprendre-le-routage-des-modèles)
-7. [Intégration VSCode](#-intégration-vscode)
-8. [Utilisation Quotidienne](#-utilisation-quotidienne)
-9. [Choix des Modèles NVIDIA NIM](#-choix-des-modèles-nvidia-nim)
-10. [Dépannage et Subtilités](#-dépannage-et-subtilités)
-11. [Résumé des Commandes](#-résumé-des-commandes)
 
 ---
 
