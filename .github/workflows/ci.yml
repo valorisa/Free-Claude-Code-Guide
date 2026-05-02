@@ -12,10 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-       
-       - name: Install markdownlint-cli
+      - name: Install markdownlint-cli
         run: npm install -g markdownlint-cli
-      
       - name: Run markdownlint
         run: markdownlint '**/*.md' --config .markdownlint.json || true
 
@@ -24,10 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-       
-       - name: Install markdown-link-check
+      - name: Install markdown-link-check
         run: npm install -g markdown-link-check
-      
       - name: Check links
         run: |
           find . -name "*.md" -not -path "./.git/*" -exec markdown-link-check -q {} \; || true
@@ -37,10 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-       
-       - name: Install codespell
+      - name: Install codespell
         run: pip install codespell
-      
       - name: Run codespell
         run: codespell --lang fr,en --skip ".git,node_modules" || true
 
@@ -49,12 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-       
-       - name: Verify README exists
+      - name: Verify README exists
         run: |
           test -f README.md && echo "README.md exists"
           head -10 README.md
-      
       - name: Check all standard files exist
         run: |
           files=(
