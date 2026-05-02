@@ -1,8 +1,8 @@
 # Free Claude Code - Guide Complet d'Installation et d'Utilisation
 
 [![CI](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/ci.yml/badge.svg)](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/ci.yml)
-[![Markdown Lint](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/markdown-lint.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Lint](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/lint.yml/badge.svg)](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/lint.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yelow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/valorisa/Free-Claude-Code-Guide?style=social)](https://github.com/valorisa/Free-Claude-Code-Guide)
 [![GitHub forks](https://img.shields.io/github/forks/valorisa/Free-Claude-Code-Guide?style=social)](https://github.com/valorisa/Free-Claude-Code-Guide/network/members)
 [![GitHub watchers](https://img.shields.io/github/watchers/valorisa/Free-Claude-Code-Guide?style=social)](https://github.com/valorisa/Free-Claude-Code-Guide/watchers)
@@ -179,7 +179,7 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 
 ## 🤖 Qu'est-ce que Free Claude Code ?
 
-**Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy** qui redirige les appels API d'Anthropic vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
+**Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy**. Il redirige les appels API d'Anthropic vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
 
 ### Ce que ça fait :
 
@@ -228,7 +228,7 @@ NVIDIA_NIM_PROXY=""
 
 #### 2. Le routage Opus/Sonnet/Haiku
 
-Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilibré, Haiku = rapide). Ces tiers sont **virtuels** dans ce contexte et sont routés vers des vrais modèles :
+Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilibré, Haiku = rapide). Ces tiers sont **virtuels** dans ce contexte. Ils sont routés vers des vrais modèles :
 
 - `MODEL_OPUS` → Normalement pour tâches complexes (ex: Kimi K2)
 - `MODEL_SONNET` → Équilibré (ex: GLM-4.7)
@@ -257,7 +257,7 @@ Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilib
 
 ### Étape 1 : Installer uv (gestionnaire de paquets Python moderne)
 
-`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet.
+`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet. C'est un outil moderne.
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -342,7 +342,8 @@ MODEL="nvidia_nim/z-ai/glm4.7"                  # Fallback si les autres sont vi
 ANTHROPIC_AUTH_TOKEN="freecc"
 ```
 
-Ce token est **local** et **fictif**. Claude Code l'envoie au proxy, et le proxy le renvoie tel quel. Vous pouvez mettre n'importe quelle valeur (ex: "toto", "1234"), mais "freecc" est la convention du projet.
+Ce token est **local** et **fictif**. Claude Code l'envoie au proxy, et le proxy le renvoie tel quel. Vous pouvez mettre n'importe quelle valeur (ex: "toto", "1234"). "freecc" est la convention du projet.
+C'est un token de test.
 
 #### 4. Options de "Thinking" (Raisonnement)
 
@@ -630,5 +631,3 @@ curl http://localhost:8082/v1/models
 
 *Dernière mise à jour : Mai 2026*
 *Guide créé par valorisa après session d'installation complète sur macOS Sequoia*
-
-

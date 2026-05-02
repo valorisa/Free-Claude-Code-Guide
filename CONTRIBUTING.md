@@ -19,7 +19,8 @@ By participating in this project, you agree to abide by our [Code of Conduct](CO
 
 ### Reporting Bugs
 
-Before creating bug reports, please check the issue list to avoid duplicates. When creating a bug report, include as many details as possible :
+Before creating bug reports, please check the issue list to avoid duplicates.
+When creating a bug report, include as many details as possible :
 
 - **Use a clear and descriptive title**
 - **Describe the exact steps to reproduce**
@@ -71,6 +72,8 @@ Enhancement suggestions are tracked as GitHub issues:
 
 ## Review Process
 
-The maintainers will review your pull request and may suggest changes. This is a normal part of the process. Once your PR is approved and passes CI checks, it will be merged.
+The maintainers will review your pull request and may suggest changes.
+This is a normal part of the process. Once your PR is approved and
+passes CI checks, it will be merged.
 
 Thank you for contributing!

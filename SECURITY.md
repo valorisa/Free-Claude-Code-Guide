@@ -3,11 +3,12 @@
 ## Reporting a Vulnerability
 
 We take the security of Free-Claude-Code-Guide seriously. If you believe you have found a security vulnerability, please report it to us as described below.
-This is important for the safety of the project.
+This is important for the safety of the project. We take all reports seriously.
 
 ### How to Report a Security Vulnerability?
 
 If you find a security vulnerability, do **NOT** open a public issue. Instead, please report it privately by emailing us at the address shown below.
+We will investigate promptly.
 
 Please include the following information in your report:
 
