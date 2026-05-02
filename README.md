@@ -205,10 +205,11 @@ C'est un projet open-source.
 
 ```text
 ┌─────────────────┐         ┌──────────────────────┐         ┌─────────────────┐
-│  Claude Code    │         │  Free Claude Code    │         │   NVIDIA NIM    │
-│  CLI ou VSCode  │────────>│  Proxy (port 8082)   │────────>│   (modèles      │
-│                 │         │                      │         │   gratuits)     │
-└─────────────────┘         └──────────────────────┘         └─────────────────┘
+│  Claude Code    │         │  Free Claude Code    │         │ Provider        │
+│  CLI ou VSCode  │────────>│  Proxy (port 8082)   │────────>│ (OpenRouter,    │
+│                 │         │                      │         │  NVIDIA NIM,    │
+└─────────────────┘         └──────────────────────┘         │  Local, etc.)   │
+                                                              └─────────────────┘
 ```
 
 ### Flux de données :
@@ -216,7 +217,7 @@ C'est un projet open-source.
 1. **Claude Code** envoie une requête API Anthropic (format Messages API)
 2. **Free Claude Code** (proxy local) intercepte la requête sur `http://localhost:8082`
 3. Le proxy **traduit** la requête au format attendu par le fournisseur
-4. **NVIDIA NIM** traite la requête et renvoie la réponse
+4. Le **provider** (OpenRouter, NVIDIA NIM, etc.) traite la requête et renvoie la réponse
 5. Le proxy **reformate** la réponse au format Anthropic
 
 ### Points subtils à comprendre :
@@ -319,31 +320,43 @@ Le fichier `.env` contient toute la configuration. Il est situé à :
 /Users/valorisa/Projets/free-claude-code/.env
 ```
 
-#### 1. Clé API NVIDIA NIM (OBLIGATOIRE)
+#### 1. Choix du Provider (OBLIGATOIRE)
 
-Obtenir une clé gratuite sur : <https://build.nvidia.com/settings/api-keys>
+Free Claude Code supporte 6 providers. **OpenRouter** est recommandé pour commencer (modèles gratuits sans carte bancaire).
+
+**Option A : OpenRouter (Recommandé - Gratuit)**
+
+Obtenir une clé sur : <https://openrouter.ai/keys>
+
+```dotenv
+OPENROUTER_API_KEY="sk-or-votre-cle-ici"
+MODEL_OPUS="open_router/google/gemma-4-26b-a4b-it:free"
+MODEL_SONNET="open_router/google/gemma-4-26b-a4b-it:free"
+MODEL_HAIKU="open_router/google/gemma-4-26b-a4b-it:free"
+MODEL="open_router/google/gemma-4-26b-a4b-it:free"
+```
+
+**Option B : NVIDIA NIM (Alternative)**
+
+Obtenir une clé sur : <https://build.nvidia.com/settings/api-keys>
 
 ```dotenv
 NVIDIA_NIM_API_KEY="nvapi-votre-clé-ici"
+MODEL_OPUS="nvidia_nim/meta/llama-3.1-70b-instruct"
+MODEL_SONNET="nvidia_nim/z-ai/glm4.7"
+MODEL_HAIKU="nvidia_nim/meta/llama-3.1-8b-instruct"
+MODEL="nvidia_nim/z-ai/glm4.7"
 ```
 
-**⚠️ Sécurité** : Ne jamais partager ce fichier avec votre clé. Ajoutez `.env` à votre `.gitignore`.
+**⚠️ Sécurité** : Ne jamais partager votre fichier `.env` avec vos clés. Ajoutez `.env` à votre `.gitignore`.
 
-#### 2. Configuration des Modèles (Optionnel mais recommandé)
-
-```dotenv
-# Routage des tiers Claude vers les modèles NVIDIA NIM
-MODEL_OPUS="nvidia_nim/moonshotai/kimi-k2"      # Pour tâches complexes
-MODEL_SONNET="nvidia_nim/z-ai/glm4.7"           # Équilibré (par défaut)
-MODEL_HAIKU="nvidia_nim/minimax/minimax-m1"     # Rapide
-MODEL="nvidia_nim/z-ai/glm4.7"                  # Fallback si les autres sont vides
-```
+#### 2. Format des Modèles
 
 **Format** : `provider_type/model/name`
 
-- `nvidia_nim` = fournisseur
-- `z-ai` = organisation
-- `glm4.7` = nom du modèle
+- `open_router` ou `nvidia_nim` = fournisseur
+- `google` ou `z-ai` = organisation
+- `gemma-4-26b-a4b-it:free` ou `glm4.7` = nom du modèle
 
 #### 3. Token d'authentification
 
@@ -391,7 +404,9 @@ Dans Free Claude Code :
 - Quand Claude Code "demande" Opus → Le proxy envoie la requête vers le modèle défini dans `MODEL_OPUS`
 - Si vous mettez `MODEL_OPUS="nvidia_nim/z-ai/glm4.7"`, alors "Opus" = GLM-4.7 (c'est juste un alias)
 
-### Comparaison des modèles NVIDIA NIM
+### Comparaison des modèles par Provider
+
+**Provider : NVIDIA NIM**
 
 | Modèle | Identifiant complet | Points forts | Points faibles |
 | ------- | ------------------- | ------------ | -------------- |
@@ -399,11 +414,17 @@ Dans Free Claude Code :
 | **Kimi K2** | `nvidia_nim/moonshotai/kimi-k2` | Très capable | Moins testé |
 | **MiniMax M1** | `nvidia_nim/minimax/minimax-m1` | Rapide | Moins puissant |
 
-**Recommandation** :
+**Provider : OpenRouter (Modèles gratuits `:free`)**
 
-- Pour une utilisation générale avec Claude Code CLI : **GLM-4.7**
-- Pour des tâches plus complexes : **Kimi K2**
-- Pour des tâches rapides/simples : **MiniMax M1**
+| Modèle | Identifiant complet | Points forts | Points faibles |
+| ------- | ------------------- | ------------ | -------------- |
+| **Gemma-4** | `open_router/google/gemma-4-26b-a4b-it:free` | Léger, gratuit | Limites de taux |
+| **Llama 3.1** | `open_router/meta-llama/llama-3.1-8b-instruct:free` | Standard, stable | - |
+
+**Recommandations** :
+
+- **OpenRouter (gratuit)** : Idéal pour débuter sans carte bancaire (`google/gemma-4-26b-a4b-it:free`)
+- **NVIDIA NIM** : Pour une utilisation plus poussée (nécessite une clé API NVIDIA)
 
 ---
 
