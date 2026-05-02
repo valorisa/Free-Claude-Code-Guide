@@ -189,23 +189,31 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 - L'intégration VSCode fonctionne de la même manière que sur macOS
 
 > **💡 Note importante pour le test** : Vous n'avez **pas besoin** d'être dans un dossier spécifique comme `$HOME/Projets/free-claude-code-guide` ou `$HOME/Projets/free-claude-code`. Vous pouvez lancer Claude Code depuis **n'importe quel dossier**.
-> 
+>
 > **Ce qu'il faut vérifier** :
+>
 > 1. **Vérifier que le proxy tourne** (port 8082) :
+>
 >    ```bash
 >    lsof -i :8082
 >    ```
+>
 >    S'il ne tourne plus, relancez-le :
+>
 >    ```bash
 >    cd $HOME/Projets/free-claude-code && source .venv/bin/activate && python server.py --port 8082 &
 >    ```
+>
 > 2. **Lancer Claude Code avec les variables** (depuis n'importe où) :
+>
 >    ```bash
 >    export ANTHROPIC_BASE_URL="http://localhost:8082"
 >    export ANTHROPIC_AUTH_TOKEN="freecc"
 >    claude
 >    ```
+>
 >    Ou en une seule commande :
+>
 >    ```bash
 >    ANTHROPIC_BASE_URL="http://localhost:8082" ANTHROPIC_AUTH_TOKEN="freecc" claude
 >    ```
