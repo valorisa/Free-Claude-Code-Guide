@@ -206,7 +206,7 @@ C'est un projet open-source.
 ```text
 ┌─────────────────┐         ┌──────────────────────┐         ┌─────────────────┐
 │  Claude Code    │         │  Free Claude Code    │         │   NVIDIA NIM    │
-│  CLI ou VSCode  │────────>│  Proxy (port 8082)  │────────>│   (modèles     │
+│  CLI ou VSCode  │────────>│  Proxy (port 8082)   │────────>│   (modèles      │
 │                 │         │                      │         │   gratuits)     │
 └─────────────────┘         └──────────────────────┘         └─────────────────┘
 ```
