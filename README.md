@@ -44,7 +44,7 @@ Une configuration spécifique est nécessaire.
 **Installation de uv** (PowerShell en tant qu'administrateur) :
 
 ```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+irm https://astral.sh/uv/install.ps1 | iex
 uv self update
 uv python install 3.14
 ```
@@ -78,10 +78,15 @@ $env:ANTHROPIC_BASE_URL="http://localhost:8082"
 claude
 
 # En une seule commande (PowerShell) - Lance le proxy en arrière-plan puis Claude Code
-cd $env:USERPROFILE\Projets\free-claude-code; Start-Job -ScriptBlock { Set-Location $env:USERPROFILE\Projets\free-claude-code; uv run uvicorn server:app --host 0.0.0.0 --port 8082 }; Start-Sleep -Seconds 3; $env:ANTHROPIC_AUTH_TOKEN="freecc"; $env:ANTHROPIC_BASE_URL="http://localhost:8082"; claude
+cd $env:USERPROFILE\Projets\free-claude-code
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "uv run uvicorn server:app --host 0.0.0.0 --port 8082" -WindowStyle Minimized
+Start-Sleep -Seconds 3
+$env:ANTHROPIC_AUTH_TOKEN="freecc"; $env:ANTHROPIC_BASE_URL="http://localhost:8082"; claude
 ```
 
 **⚠️ Notes spécifiques Windows Enterprise** :
+
+- ⚠️ **Note technique PowerShell** : Nous utilisons `Start-Process` plutôt que `Start-Job` car `Start-Job` crée une session PowerShell isolée qui n'hérite pas du PATH utilisateur, ce qui peut empêcher `uv` d'être trouvé. `Start-Process` lance le proxy dans une nouvelle fenêtre minimisée visible dans la barre des tâches.
 
 - Ajoutez `uv` au PATH manuellement si nécessaire : `%USERPROFILE%\.cargo\bin` ou `%USERPROFILE%\.local\bin`
 - Désactivez temporairement l'antivirus si le téléchargement de Python 3.14 échoue
@@ -559,7 +564,7 @@ uv run uvicorn server:app --host 0.0.0.0 --port 8082 &
 
 # Windows (PowerShell)
 cd $env:USERPROFILE\Projets\free-claude-code
-Start-Job -ScriptBlock { Set-Location $env:USERPROFILE\Projets\free-claude-code; uv run uvicorn server:app --host 0.0.0.0 --port 8082 }
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "uv run uvicorn server:app --host 0.0.0.0 --port 8082" -WindowStyle Minimized
 ```
 
 #### Test 2 : Ouvrir l'extension Claude Code dans VSCode
