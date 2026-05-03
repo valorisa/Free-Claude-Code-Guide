@@ -3,7 +3,7 @@
 
 [![CI](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/ci.yml/badge.svg)](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/ci.yml)
 [![Lint](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/lint.yml/badge.svg)](https://github.com/valorisa/Free-Claude-Code-Guide/actions/workflows/lint.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yelow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/valorisa/Free-Claude-Code-Guide?style=social)](https://github.com/valorisa/Free-Claude-Code-Guide)
 [![GitHub forks](https://img.shields.io/github/forks/valorisa/Free-Claude-Code-Guide?style=social)](https://github.com/valorisa/Free-Claude-Code-Guide/network/members)
 [![GitHub watchers](https://img.shields.io/github/watchers/valorisa/Free-Claude-Code-Guide?style=social)](https://github.com/valorisa/Free-Claude-Code-Guide/watchers)
@@ -25,10 +25,11 @@
 7. [Comprendre le Routage des Modèles](#comprendre-le-routage-des-modèles)
 8. [Intégration VSCode](#intégration-vscode)
 9. [Utilisation Quotidienne](#utilisation-quotidienne)
-10. [Dépannage et Subtilités](#dépannage-et-subtilités)
-11. [Résumé des Commandes Essentielles](#résumé-des-commandes-essentielles)
-12. [Ressources et Liens](#ressources-et-liens)
-13. [Avertissements et Bonnes Pratiques](#avertissements-et-bonnes-pratiques)
+10. [Vérifications et Dépannage Rapide](#vérifications-et-dépannage-rapide)
+11. [Dépannage et Subtilités](#dépannage-et-subtilités)
+12. [Résumé des Commandes Essentielles](#résumé-des-commandes-essentielles)
+13. [Ressources et Liens](#ressources-et-liens)
+14. [Avertissements et Bonnes Pratiques](#avertissements-et-bonnes-pratiques)
 
 ---
 
@@ -187,43 +188,12 @@ cd ~/Projets/free-claude-code && uv run uvicorn server:app --host 0.0.0.0 --port
 
 - L'intégration VSCode fonctionne de la même manière que sur macOS
 
-> **💡 Note importante pour le test** : Vous n'avez **pas besoin** d'être dans un dossier spécifique comme `$HOME/Projets/free-claude-code-guide` ou `$HOME/Projets/free-claude-code`. Vous pouvez lancer Claude Code depuis **n'importe quel dossier**.
->
-> **Ce qu'il faut vérifier** :
->
-> 1. **Vérifier que le proxy tourne** (port 8082) :
->
->    ```bash
->    lsof -i :8082
->    ```
->
->    S'il ne tourne plus, relancez-le :
->
->    ```bash
->    cd $HOME/Projets/free-claude-code && source .venv/bin/activate && python server.py --port 8082 &
->    ```
->
-> 2. **Lancer Claude Code avec les variables** (depuis n'importe où) :
->
->    ```bash
->    export ANTHROPIC_BASE_URL="http://localhost:8082"
->    export ANTHROPIC_AUTH_TOKEN="freecc"
->    claude
->    ```
->
->    Ou en une seule commande :
->
->    ```bash
->    ANTHROPIC_BASE_URL="http://localhost:8082" ANTHROPIC_AUTH_TOKEN="freecc" claude
->    ```
-
 ---
 
 ## Qu'est-ce que Free Claude Code ?
 
 **Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy**. Il redirige les appels API d'Anthropic vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
-C'est un projet open-source. Il est très utilisé. Il est performant.
-C'est un projet open-source.
+C'est un projet open-source. Il est très utilisé et performant.
 
 ### Ce que ça fait :
 
@@ -273,8 +243,8 @@ NVIDIA_NIM_PROXY=""
 
 #### 2. Le routage Opus/Sonnet/Haiku
 
-Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilibré, Haiku = rapide). Ces tiers sont **virtuels** dans ce contexte. Ils sont routés vers des vrais modèles :
-C'est une particularité du projet. C'est unique.
+Claude Code demande des modèles par "tiers" (Opus = complexe, Sonnet = équilibré, Haiku = rapide). Ces tiers sont **virtuels** dans ce contexte. Ils sont routés vers des vrais modèles.
+C'est une particularité unique du projet.
 
 - `MODEL_OPUS` → Normalement pour tâches complexes (ex: Kimi K2)
 - `MODEL_SONNET` → Équilibré (ex: GLM-4.7)
@@ -303,9 +273,7 @@ $HOME/Projets/free-claude-code-guide
 
 ### Étape 1 : Installer uv (gestionnaire de paquets Python moderne)
 
-`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet. C'est un outil moderne. Il est performant. Il est très rapide.
-Il est très performant.
-Il est très performant.
+`uv` est un outil équivalent à `pip` mais beaucoup plus rapide. Il gère aussi les versions de Python. Il est recommandé de l'utiliser pour ce projet. C'est un outil moderne, performant et très rapide.
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -402,8 +370,7 @@ MODEL="nvidia_nim/z-ai/glm4.7"
 ANTHROPIC_AUTH_TOKEN="freecc"
 ```
 
-Ce token est **local** et **fictif**. Claude Code l'envoie au proxy, et le proxy le renvoie tel quel. Vous pouvez mettre n'importe quelle valeur (ex: "toto", "1234"). "freecc" est la convention du projet. C'est un token de test.
-C'est un token de test. Il n'est pas sensible.
+Ce token est **local** et **fictif**. Claude Code l'envoie au proxy, et le proxy le renvoie tel quel. Vous pouvez mettre n'importe quelle valeur (ex: "toto", "1234"). "freecc" est la convention du projet. C'est un token de test non sensible.
 
 #### 4. Options de "Thinking" (Raisonnement)
 
@@ -514,7 +481,7 @@ uv run uvicorn server:app --host 0.0.0.0 --port 8082
 
 - `uv run` : Exécute la commande dans l'environnement virtuel du projet
 - `uvicorn` : Serveur web ASGI (comme gunicorn mais pour Python asynchrone)
-- `server:app` : Le fichier `server.py` et la variable `app` (l'application FastAPI)
+- `server:app` : Le fichier `server.py` et la variable `app` (notation Python : module:variable pour l'application FastAPI)
 - `--host 0.0.0.0` : Écoute sur toutes les interfaces (pas seulement localhost)
 - `--port 8082` : Port d'écoute
 
@@ -545,6 +512,7 @@ Si vous préférez n'utiliser qu'un seul terminal :
 ```bash
 cd $HOME/Projets/free-claude-code
 uv run uvicorn server:app --host 0.0.0.0 --port 8082 &
+sleep 3
 ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
@@ -560,6 +528,46 @@ ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 kill %1
 # ou
 pkill -f uvicorn
+```
+
+---
+
+## Vérifications et Dépannage Rapide
+
+### Principe de base
+
+**💡 Point important** : Claude Code peut être lancé depuis **n'importe quel dossier** de votre système. Vous n'avez pas besoin d'être dans `$HOME/Projets/free-claude-code` ou `$HOME/Projets/free-claude-code-guide`.
+
+### Vérifications essentielles
+
+#### 1. Vérifier que le proxy tourne (port 8082)
+
+```bash
+lsof -i :8082
+```
+
+**Résultat attendu** : Vous devriez voir une ligne avec `uvicorn` et le port `8082`.
+
+**Si aucun résultat** : Le proxy ne tourne pas. Relancez-le :
+
+```bash
+cd $HOME/Projets/free-claude-code && uv run uvicorn server:app --host 0.0.0.0 --port 8082 &
+```
+
+#### 2. Lancer Claude Code depuis n'importe où
+
+**Option A : Variables temporaires (recommandé)**
+
+```bash
+ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
+```
+
+**Option B : Export puis lancement**
+
+```bash
+export ANTHROPIC_BASE_URL="http://localhost:8082"
+export ANTHROPIC_AUTH_TOKEN="freecc"
+claude
 ```
 
 ---
