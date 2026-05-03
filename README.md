@@ -10,9 +10,7 @@
 [![Dependabot Alerts](https://img.shields.io/github/dependabot/valorisa/Free-Claude-Code-Guide)](https://github.com/valorisa/Free-Claude-Code-Guide/security/dependabot)
 
 > **IMPORTANT** : Ce guide est un "pense-bête" exhaustif créé après une session d'installation complète sur macOS Sequoia avec VSCode.
-> Il contient toutes les subtilités, nuances et décisions techniques prises lors de l'installation.
-> Il sert de référence complète pour l'utilisation de Free Claude Code.
-> C'est un guide de référence technique. Il est très détaillé, complet et exhaustif.
+> Il contient toutes les subtilités, nuances et décisions techniques prises lors de l'installation et sert de référence complète pour l'utilisation de Free Claude Code.
 
 ## Table des matières
 
@@ -197,7 +195,7 @@ cd ~/Projets/free-claude-code && uv run uvicorn server:app --host 0.0.0.0 --port
 
 ## Qu'est-ce que Free Claude Code ?
 
-**Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy**. Il redirige les appels API d'Anthropic vers des fournisseurs gratuits ou personnels, notamment **NVIDIA NIM**.
+**Free Claude Code** (dépôt : `Alishahryar1/free-claude-code`) est un **proxy**. Il redirige les appels API d'Anthropic vers des providers gratuits ou personnels, notamment **NVIDIA NIM**.
 C'est un projet open-source. Il est très utilisé et performant.
 
 ### Ce que ça fait :
@@ -229,7 +227,7 @@ C'est un projet open-source. Il est très utilisé et performant.
 
 1. **Claude Code** envoie une requête API Anthropic (format Messages API)
 2. **Free Claude Code** (proxy local) intercepte la requête sur `http://localhost:8082`
-3. Le proxy **traduit** la requête au format attendu par le fournisseur
+3. Le proxy **traduit** la requête au format attendu par le provider
 4. Le **provider** (OpenRouter, NVIDIA NIM, etc.) traite la requête et renvoie la réponse
 5. Le proxy **reformate** la réponse au format Anthropic
 
@@ -365,7 +363,7 @@ MODEL="nvidia_nim/z-ai/glm4.7"
 
 **Format** : `provider_type/model/name`
 
-- `open_router` ou `nvidia_nim` = fournisseur
+- `open_router` ou `nvidia_nim` = provider
 - `google` ou `z-ai` = organisation
 - `gemma-4-26b-a4b-it:free` ou `glm4.7` = nom du modèle
 
@@ -855,7 +853,7 @@ curl http://localhost:8082/v1/models
 - **Dépôt Free Claude Code** : [GitHub](https://github.com/Alishahryar1/free-claude-code)
 - **Obtenir une clé NVIDIA NIM** : [NVIDIA](https://build.nvidia.com/settings/api-keys)
 - **Documentation uv** : [Docs](https://docs.astral.sh/uv/)
-- **Claude Code officiel** : [Site](https://claude.ai/) (pour installer le CLI)
+- **Claude Code CLI** : [Installation](https://docs.anthropic.com/en/docs/agents-and-agentic-systems/claude-code) (documentation officielle Anthropic)
 
 ---
 
