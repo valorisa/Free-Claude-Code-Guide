@@ -435,32 +435,187 @@ Dans Free Claude Code :
 
 ## Intégration VSCode
 
-### Extension Claude Code
+### Pré-requis : Installer l'extension Claude Code
 
-Si vous utilisez l'extension Claude Code dans VSCode, elle doit pointer vers le proxy local.
+Avant de configurer VSCode, assurez-vous que l'extension Claude Code est installée :
 
-**Fichier** : `$HOME/Library/Application Support/Code/User/settings.json`
+1. Ouvrez VSCode
+2. Allez dans l'onglet **Extensions** (`Ctrl+Shift+X` ou `Cmd+Shift+X` sur macOS)
+3. Recherchez **"Claude Code"** (éditeur : Anthropic)
+4. Cliquez sur **Install**
 
-**Config ajoutée** :
+### Emplacement du fichier settings.json
+
+Le fichier de configuration VSCode se trouve à des emplacements différents selon votre système d'exploitation :
+
+| Système | Chemin du fichier settings.json |
+|---------|--------------------------------|
+| **Windows** | `%APPDATA%\Code\User\settings.json` <br> (ou `$env:APPDATA\Code\User\settings.json` en PowerShell) |
+| **macOS** | `$HOME/Library/Application Support/Code/User/settings.json` |
+| **Linux** | `$HOME/.config/Code/User/settings.json` |
+
+### Configuration pas à pas
+
+#### Étape 1 : Ouvrir le fichier settings.json
+
+**Méthode recommandée (tous les OS)** :
+
+1. Ouvrez VSCode
+2. Appuyez sur `Ctrl+Shift+P` (Windows/Linux) ou `Cmd+Shift+P` (macOS) pour ouvrir la **Command Palette**
+3. Tapez : `Preferences: Open User Settings (JSON)`
+4. Appuyez sur **Entrée**
+
+Le fichier `settings.json` s'ouvre dans l'éditeur.
+
+#### Étape 2 : Ajouter la configuration Free Claude Code
+
+**Cas A : Fichier settings.json vide ou nouveau**
+
+Si votre fichier est vide ou contient seulement `{}`, remplacez tout par :
 
 ```json
-"claudeCode.environmentVariables": [
+{
+  "claudeCode.environmentVariables": [
     { "name": "ANTHROPIC_BASE_URL", "value": "http://localhost:8082" },
     { "name": "ANTHROPIC_AUTH_TOKEN", "value": "freecc" }
-]
+  ]
+}
 ```
 
-**⚠️ Points subtils** :
+**Cas B : Fichier settings.json existant avec d'autres paramètres**
 
-1. **Pas de `/v1`** à la fin de l'URL
-2. **Recharger l'extension** : Après modification de `settings.json`
-3. **Le proxy doit tourner** : L'extension ne fonctionnera que si le proxy est actif
+Si votre fichier contient déjà des paramètres (exemple : thème, taille de police, etc.), **ajoutez** la configuration à l'intérieur des accolades existantes :
 
-### Si l'extension affiche un écran de connexion
+**Exemple avant** :
+```json
+{
+  "editor.fontSize": 14,
+  "workbench.colorTheme": "Dark+"
+}
+```
 
-- Vérifiez que les variables d'environnement sont bien dans `settings.json`
-- Rechargez l'extension ou redémarrez VSCode
-- L'écran de connexion peut apparaître une fois, mais le proxy local sera utilisé après
+**Exemple après** (ajout de la virgule et de la configuration) :
+```json
+{
+  "editor.fontSize": 14,
+  "workbench.colorTheme": "Dark+",
+  "claudeCode.environmentVariables": [
+    { "name": "ANTHROPIC_BASE_URL", "value": "http://localhost:8082" },
+    { "name": "ANTHROPIC_AUTH_TOKEN", "value": "freecc" }
+  ]
+}
+```
+
+⚠️ **Important** : N'oubliez pas la **virgule** après le paramètre précédent !
+
+#### Étape 3 : Sauvegarder et recharger
+
+1. **Sauvegardez** le fichier (`Ctrl+S` ou `Cmd+S`)
+2. **Rechargez VSCode** :
+   - Ouvrez la Command Palette (`Ctrl+Shift+P` ou `Cmd+Shift+P`)
+   - Tapez : `Developer: Reload Window`
+   - Appuyez sur **Entrée**
+
+### Résultat attendu dans settings.json
+
+Votre configuration finale devrait ressembler à ceci :
+
+```json
+{
+  "claudeCode.environmentVariables": [
+    { "name": "ANTHROPIC_BASE_URL", "value": "http://localhost:8082" },
+    { "name": "ANTHROPIC_AUTH_TOKEN", "value": "freecc" }
+  ],
+  "editor.fontSize": 14,
+  "workbench.colorTheme": "Dark+",
+  "... autres paramètres ..."
+}
+```
+
+### Vérification que la configuration fonctionne
+
+#### Test 1 : Vérifier que le proxy est actif
+
+Avant de tester l'extension, assurez-vous que le proxy tourne :
+
+```bash
+# macOS/Linux
+lsof -i :8082
+
+# Windows (PowerShell)
+netstat -ano | findstr :8082
+```
+
+**Résultat attendu** : Une ligne montrant qu'un processus écoute sur le port 8082.
+
+**Si le proxy ne tourne pas**, lancez-le :
+
+```bash
+# macOS/Linux
+cd $HOME/Projets/free-claude-code
+uv run uvicorn server:app --host 0.0.0.0 --port 8082 &
+
+# Windows (PowerShell)
+cd $env:USERPROFILE\Projets\free-claude-code
+Start-Job -ScriptBlock { Set-Location $env:USERPROFILE\Projets\free-claude-code; uv run uvicorn server:app --host 0.0.0.0 --port 8082 }
+```
+
+#### Test 2 : Ouvrir l'extension Claude Code dans VSCode
+
+1. Cliquez sur l'icône **Claude Code** dans la barre latérale de VSCode
+2. L'extension devrait se connecter automatiquement au proxy local
+3. **Aucun écran de connexion ne devrait apparaître** si la configuration est correcte
+
+#### Test 3 : Envoyer un message test
+
+Dans l'interface Claude Code de VSCode :
+
+1. Tapez un message simple : `Hello, quel modèle es-tu ?`
+2. Envoyez le message
+3. Claude devrait répondre via le modèle configuré dans votre `.env` (ex: GLM-4.7, Gemma-4, etc.)
+
+**Si vous voyez une réponse** : ✅ La configuration fonctionne !
+
+### Dépannage VSCode
+
+#### Problème : "Unable to connect" ou écran de connexion
+
+**Solutions** :
+
+1. **Vérifiez le fichier settings.json** :
+   - Pas de faute de frappe dans `ANTHROPIC_BASE_URL`
+   - Pas de `/v1` à la fin de l'URL
+   - JSON valide (accolades, virgules)
+
+2. **Vérifiez que le proxy tourne** (voir Test 1 ci-dessus)
+
+3. **Rechargez VSCode complètement** :
+   - Fermez VSCode
+   - Rouvrez VSCode
+   - Attendez 5-10 secondes
+
+4. **Vérifiez les logs de l'extension** :
+   - Ouvrez la **Console de développement** : `Help > Toggle Developer Tools`
+   - Onglet **Console**
+   - Cherchez des erreurs liées à `claudeCode` ou `ANTHROPIC_BASE_URL`
+
+#### Problème : Le modèle ne répond pas comme attendu
+
+**Solutions** :
+
+1. **Vérifiez les logs du proxy** (Terminal 1 où tourne uvicorn)
+2. **Vérifiez votre fichier `.env`** :
+   ```bash
+   cat $HOME/Projets/free-claude-code/.env
+   ```
+3. **Vérifiez que votre clé API est valide** (NVIDIA NIM ou OpenRouter)
+
+### Points subtils à retenir
+
+1. ⚠️ **Pas de `/v1`** à la fin de `ANTHROPIC_BASE_URL` (erreur courante)
+2. ⚠️ **Le proxy doit tourner en arrière-plan** pendant toute votre session VSCode
+3. ⚠️ **Le token "freecc" est fictif** : c'est normal, il sert uniquement en local
+4. ✅ **Les variables s'appliquent à l'extension uniquement** : elles ne modifient pas votre configuration globale Claude Code CLI
 
 ---
 
