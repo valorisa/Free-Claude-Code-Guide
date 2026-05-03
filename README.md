@@ -449,7 +449,7 @@ Avant de configurer VSCode, assurez-vous que l'extension Claude Code est install
 Le fichier de configuration VSCode se trouve à des emplacements différents selon votre système d'exploitation :
 
 | Système | Chemin du fichier settings.json |
-|---------|--------------------------------|
+| ------- | ------------------------------- |
 | **Windows** | `%APPDATA%\Code\User\settings.json` <br> (ou `$env:APPDATA\Code\User\settings.json` en PowerShell) |
 | **macOS** | `$HOME/Library/Application Support/Code/User/settings.json` |
 | **Linux** | `$HOME/.config/Code/User/settings.json` |
@@ -487,6 +487,7 @@ Si votre fichier est vide ou contient seulement `{}`, remplacez tout par :
 Si votre fichier contient déjà des paramètres (exemple : thème, taille de police, etc.), **ajoutez** la configuration à l'intérieur des accolades existantes :
 
 **Exemple avant** :
+
 ```json
 {
   "editor.fontSize": 14,
@@ -495,6 +496,7 @@ Si votre fichier contient déjà des paramètres (exemple : thème, taille de po
 ```
 
 **Exemple après** (ajout de la virgule et de la configuration) :
+
 ```json
 {
   "editor.fontSize": 14,
@@ -605,9 +607,11 @@ Dans l'interface Claude Code de VSCode :
 
 1. **Vérifiez les logs du proxy** (Terminal 1 où tourne uvicorn)
 2. **Vérifiez votre fichier `.env`** :
+
    ```bash
    cat $HOME/Projets/free-claude-code/.env
    ```
+
 3. **Vérifiez que votre clé API est valide** (NVIDIA NIM ou OpenRouter)
 
 ### Points subtils à retenir
