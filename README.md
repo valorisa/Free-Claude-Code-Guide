@@ -76,8 +76,8 @@ $env:ANTHROPIC_AUTH_TOKEN="freecc"
 $env:ANTHROPIC_BASE_URL="http://localhost:8082"
 claude
 
-# En une seule commande (PowerShell)
-$env:ANTHROPIC_AUTH_TOKEN="freecc"; $env:ANTHROPIC_BASE_URL="http://localhost:8082"; claude
+# En une seule commande (PowerShell) - Lance le proxy en arrière-plan puis Claude Code
+cd $env:USERPROFILE\Projets\free-claude-code; Start-Job -ScriptBlock { Set-Location $env:USERPROFILE\Projets\free-claude-code; uv run uvicorn server:app --host 0.0.0.0 --port 8082 }; Start-Sleep -Seconds 3; $env:ANTHROPIC_AUTH_TOKEN="freecc"; $env:ANTHROPIC_BASE_URL="http://localhost:8082"; claude
 ```
 
 **⚠️ Notes spécifiques Windows Enterprise** :
@@ -119,8 +119,8 @@ uv run uvicorn server:app --host 0.0.0.0 --port 8082
 # Terminal2
 ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 
-# En une seule commande
-ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
+# En une seule commande (lance le proxy en arrière-plan puis Claude Code)
+cd $HOME/Projets/free-claude-code && uv run uvicorn server:app --host 0.0.0.0 --port 8082 & sleep 3 && ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 **⚠️ Notes spécifiques macOS** :
@@ -162,8 +162,8 @@ uv run uvicorn server:app --host 0.0.0.0 --port 8082
 # Terminal2
 ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 
-# En une seule commande
-ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
+# En une seule commande (lance le proxy en arrière-plan puis Claude Code)
+cd ~/Projets/free-claude-code && uv run uvicorn server:app --host 0.0.0.0 --port 8082 & sleep 3 && ANTHROPIC_AUTH_TOKEN="freecc" ANTHROPIC_BASE_URL="http://localhost:8082" claude
 ```
 
 **⚠️ Notes spécifiques Linux** :
