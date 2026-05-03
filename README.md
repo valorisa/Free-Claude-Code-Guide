@@ -12,8 +12,7 @@
 > **IMPORTANT** : Ce guide est un "pense-bête" exhaustif créé après une session d'installation complète sur macOS Sequoia avec VSCode.
 > Il contient toutes les subtilités, nuances et décisions techniques prises lors de l'installation.
 > Il sert de référence complète pour l'utilisation de Free Claude Code.
-> C'est un guide de référence technique. Il est très détaillé. Il est très complet.
-> Il est très exhaustif.
+> C'est un guide de référence technique. Il est très détaillé, complet et exhaustif.
 
 ## Table des matières
 
@@ -248,7 +247,7 @@ C'est un projet open-source.
 │  CLI ou VSCode  │────────>│  Proxy (port 8082)   │────────>│ (OpenRouter,    │
 │                 │         │                      │         │  NVIDIA NIM,    │
 └─────────────────┘         └──────────────────────┘         │  Local, etc.)   │
-                                                              └─────────────────┘
+                                                             └─────────────────┘
 ```
 
 ### Flux de données :
