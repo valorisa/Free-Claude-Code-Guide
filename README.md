@@ -101,7 +101,7 @@ $env:ANTHROPIC_AUTH_TOKEN="freecc"; $env:ANTHROPIC_BASE_URL="http://localhost:80
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv self update
-uv python install 3.14
+which python && python --version || uv python install 3.14
 ```
 
 **Cloner le dépôt** :
@@ -144,7 +144,7 @@ cd $HOME/Projets/free-claude-code && uv run uvicorn server:app --host 0.0.0.0 --
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv self update
-uv python install 3.14
+which python && python --version || uv python install 3.14
 ```
 
 **Cloner le dépôt** :
