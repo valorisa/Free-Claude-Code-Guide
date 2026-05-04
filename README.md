@@ -44,7 +44,7 @@ Une configuration spécifique est nécessaire.
 ```powershell
 irm https://astral.sh/uv/install.ps1 | iex
 uv self update
-uv python install 3.14
+which python && python --version || uv python install 3.14
 ```
 
 **Configuration du proxy d'entreprise** :
